@@ -7,14 +7,16 @@ const TodoList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTodos());
-  }, [dispatch]);
+  }, []);
   const todos = useSelector((state) => state.todos);
-  console.log(todos);
 
-  return (
+  return todos.length === 0 ? (
+    <>Nothing to do</>
+  ) : (
     <ul className="list-group">
       {todos.map((todo) => (
         <TodoItem
+          key={todo.id + "td"}
           id={todo.id}
           title={todo.title}
           completed={todo.completed}
